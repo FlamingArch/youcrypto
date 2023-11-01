@@ -8,17 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		E4BABC8A2AF2333300809058 /* YouCryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BABC892AF2333300809058 /* YouCryptoApp.swift */; };
-		E4BABC8C2AF2333300809058 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BABC8B2AF2333300809058 /* ContentView.swift */; };
-		E4BABC8E2AF2333300809058 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BABC8D2AF2333300809058 /* Assets.xcassets */; };
-		E4BABC912AF2333300809058 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BABC902AF2333300809058 /* Preview Assets.xcassets */; };
+		E4BABC9A2AF2463700809058 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BABC992AF2463600809058 /* Assets.xcassets */; };
+		E4BABC9D2AF2475F00809058 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BABC9C2AF2475F00809058 /* Color.swift */; };
+		E4BABCA72AF24B7300809058 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BABCA62AF24B7300809058 /* HomeView.swift */; };
+		E4BABCAA2AF24BA200809058 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BABCA92AF24BA200809058 /* Assets.xcassets */; };
+		E4BABCAD2AF24BF300809058 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BABCAC2AF24BF300809058 /* NavigationButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E4BABC862AF2333300809058 /* YouCrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouCrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BABC892AF2333300809058 /* YouCryptoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouCryptoApp.swift; sourceTree = "<group>"; };
-		E4BABC8B2AF2333300809058 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E4BABC8D2AF2333300809058 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E4BABC902AF2333300809058 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E4BABC992AF2463600809058 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E4BABC9C2AF2475F00809058 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		E4BABCA62AF24B7300809058 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E4BABCA92AF24BA200809058 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E4BABCAC2AF24BF300809058 /* NavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,20 +55,46 @@
 		E4BABC882AF2333300809058 /* YouCrypto */ = {
 			isa = PBXGroup;
 			children = (
+				E4BABCAB2AF24BDA00809058 /* Views */,
+				E4BABC9B2AF2474F00809058 /* Extensions */,
+				E4BABCA52AF24B6800809058 /* Pages */,
+				E4BABCA82AF24B9100809058 /* Preview Content */,
 				E4BABC892AF2333300809058 /* YouCryptoApp.swift */,
-				E4BABC8B2AF2333300809058 /* ContentView.swift */,
-				E4BABC8D2AF2333300809058 /* Assets.xcassets */,
-				E4BABC8F2AF2333300809058 /* Preview Content */,
+				E4BABC992AF2463600809058 /* Assets.xcassets */,
 			);
 			path = YouCrypto;
 			sourceTree = "<group>";
 		};
-		E4BABC8F2AF2333300809058 /* Preview Content */ = {
+		E4BABC9B2AF2474F00809058 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E4BABC902AF2333300809058 /* Preview Assets.xcassets */,
+				E4BABC9C2AF2475F00809058 /* Color.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E4BABCA52AF24B6800809058 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				E4BABCA62AF24B7300809058 /* HomeView.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		E4BABCA82AF24B9100809058 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E4BABCA92AF24BA200809058 /* Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E4BABCAB2AF24BDA00809058 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E4BABCAC2AF24BF300809058 /* NavigationButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +155,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4BABC912AF2333300809058 /* Preview Assets.xcassets in Resources */,
-				E4BABC8E2AF2333300809058 /* Assets.xcassets in Resources */,
+				E4BABCAA2AF24BA200809058 /* Assets.xcassets in Resources */,
+				E4BABC9A2AF2463700809058 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +167,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4BABC8C2AF2333300809058 /* ContentView.swift in Sources */,
+				E4BABCA72AF24B7300809058 /* HomeView.swift in Sources */,
 				E4BABC8A2AF2333300809058 /* YouCryptoApp.swift in Sources */,
+				E4BABC9D2AF2475F00809058 /* Color.swift in Sources */,
+				E4BABCAD2AF24BF300809058 /* NavigationButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,18 +307,22 @@
 				DEVELOPMENT_TEAM = YBVLTH5SD7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = YouCrypto;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flamingarch.YouCrypto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flamingarch.garage.youcrypto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -304,18 +340,22 @@
 				DEVELOPMENT_TEAM = YBVLTH5SD7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = YouCrypto;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flamingarch.YouCrypto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flamingarch.garage.youcrypto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
