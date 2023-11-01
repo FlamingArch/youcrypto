@@ -57,6 +57,7 @@ extension HomeView {
                     .fontWeight(.regular)
             }
             .padding()
+            .padding(.bottom, 0)
     }
     
     private var allCoinsList: some View {
@@ -64,7 +65,7 @@ extension HomeView {
             ForEach(viewModel.allCoins) {
                 CoinRow(coin: $0, showHoldingsColumn: false)
                     .listRowSeparator(.hidden)
-                    .listRowInsets(.init(top: 20, leading: 20, bottom: 20, trailing: 20))
+                    .listRowInsets(.init(top: 16, leading: 8, bottom: 16, trailing: 16))
             }
         }
         .listStyle(.plain)
