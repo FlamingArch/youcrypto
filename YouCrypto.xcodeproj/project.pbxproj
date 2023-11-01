@@ -13,6 +13,7 @@
 		E4BABCA72AF24B7300809058 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BABCA62AF24B7300809058 /* HomeView.swift */; };
 		E4BABCAA2AF24BA200809058 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BABCA92AF24BA200809058 /* Assets.xcassets */; };
 		E4BABCAD2AF24BF300809058 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BABCAC2AF24BF300809058 /* NavigationButton.swift */; };
+		E4BABCB22AF2619B00809058 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BABCB12AF2619B00809058 /* Coin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		E4BABCA62AF24B7300809058 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E4BABCA92AF24BA200809058 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4BABCAC2AF24BF300809058 /* NavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
+		E4BABCB12AF2619B00809058 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 		E4BABC882AF2333300809058 /* YouCrypto */ = {
 			isa = PBXGroup;
 			children = (
+				E4BABCB02AF2618300809058 /* Models */,
 				E4BABCAB2AF24BDA00809058 /* Views */,
 				E4BABC9B2AF2474F00809058 /* Extensions */,
 				E4BABCA52AF24B6800809058 /* Pages */,
@@ -95,6 +98,14 @@
 				E4BABCAC2AF24BF300809058 /* NavigationButton.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E4BABCB02AF2618300809058 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E4BABCB12AF2619B00809058 /* Coin.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +178,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4BABCB22AF2619B00809058 /* Coin.swift in Sources */,
 				E4BABCA72AF24B7300809058 /* HomeView.swift in Sources */,
 				E4BABC8A2AF2333300809058 /* YouCryptoApp.swift in Sources */,
 				E4BABC9D2AF2475F00809058 /* Color.swift in Sources */,

@@ -8,24 +8,15 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var showPortfolio = false
+    
     var body: some View {
         ZStack {
             Color.theme.background.ignoresSafeArea()
             VStack  {
-                VStack(alignment: .leading, spacing: 20) {
-                    HStack(spacing: 16) {
-                        NavigationButton(icon: "info", label: "Info")
-                        Spacer()
-                        NavigationButton(icon: "chevron.right", label: nil)
-                    }
-                    Text("Header")
-                        .font(.system(size: 36))
-                        .fontWeight(.regular)
-                        .foregroundStyle(Color.theme.accent)
-                }
-                .padding()
+                homeHeader
                 
-                Spacer(minLength: 0)
+                Spacer()
             }
         }
     }
@@ -33,4 +24,28 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+}
+
+// MARK: AppBar
+extension HomeView {
+    private var homeHeader: some View {
+            VStack(alignment: .leading, spacing: 20) {
+                HStack(spacing: 16) {
+                    NavigationButton(icon: showPortfolio ? "info" : "info", label: "Info")
+                        .animation(.none, value: false)
+                    Spacer()
+                    NavigationButton(icon: "chevron.right", label: nil)
+                        .rotationEffect(Angle(degrees: showPortfolio ? 180 : 0))
+                        .onTapGesture {
+                            withAnimation(.spring) {
+                                showPortfolio.toggle()
+                            }
+                        }
+                }
+                Text("Live")
+                    .font(.system(size: 36))
+                    .fontWeight(.regular)
+            }
+            .padding()
+    }
 }

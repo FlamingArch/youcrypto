@@ -24,9 +24,9 @@ struct NavigationButton: View {
             }
         }
         .padding(.trailing, label != nil ? 20 : 0)
-        .foregroundColor(.theme.accent)
+        .foregroundColor(.primary)
         .background(
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: 999)
                 .foregroundColor(.theme.secondaryText.opacity(0.16))
         )
     }
