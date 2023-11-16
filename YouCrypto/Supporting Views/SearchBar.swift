@@ -13,10 +13,10 @@ struct SearchBar: View {
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
+                .frame(width: 50, height: 50)
             TextField("Search", text: $searchText)
                 .disableAutocorrection(true)
         }
-        .padding()
         .background(
             Capsule()
                 .foregroundColor(.theme.secondaryText.opacity(0.16))
@@ -24,6 +24,7 @@ struct SearchBar: View {
         .overlay(alignment: .trailing) {
             Image(systemName: "xmark.circle.fill")
                 .padding()
+                .opacity(searchText.isEmpty ? 0 : 1)
                 .onTapGesture {
                     UIApplication.shared.endEditing()
                     searchText = ""

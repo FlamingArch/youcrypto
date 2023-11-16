@@ -11,7 +11,6 @@ struct HomeView: View {
     @EnvironmentObject private var viewModel: HomeViewModel
     @State private var showPortfolio = false
     @State private var showSearchBar = false
-    @State private var searchText = ""
     
     var body: some View {
         ZStack {
@@ -61,7 +60,7 @@ extension HomeView {
                         }
                         .transition(.asymmetric(insertion: .push(from: .top), removal: .push(from: .bottom)))
                     
-                    SearchBar(searchText: $searchText)
+                    SearchBar(searchText: $viewModel.searchText)
                         .transition(.asymmetric(insertion: .push(from: .top), removal: .push(from: .bottom)))
                 }
                 
