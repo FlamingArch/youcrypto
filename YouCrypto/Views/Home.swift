@@ -10,6 +10,8 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject private var viewModel: HomeViewModel
     @State private var showPortfolio = false
+    @State private var showSearchBar = false
+    @State private var searchText = ""
     
     var body: some View {
         ZStack {
@@ -24,7 +26,7 @@ struct HomeView: View {
                 } else {
                     portfolioCoinsList
                 }
-
+                
                 Spacer()
             }
         }
@@ -39,25 +41,59 @@ struct HomeView: View {
 // MARK: AppBar
 extension HomeView {
     private var homeHeader: some View {
-            VStack(alignment: .leading, spacing: 20) {
-                HStack(spacing: 16) {
+        VStack(alignment: .leading, spacing: 20) {
+            HStack(spacing: 16) {
+                if !showSearchBar{
                     NavigationButton(icon: showPortfolio ? "info" : "info", label: "Info")
                         .animation(.none, value: false)
+                        .transition(.asymmetric(insertion: .push(from: .leading), removal: .push(from: .trailing)))
+                    
                     Spacer()
+                }
+                
+                
+                if showSearchBar {
+                    NavigationButton(icon: "chevron.left", label: nil)
+                        .onTapGesture {
+                            withAnimation {
+                                showSearchBar = false
+                            }
+                        }
+                        .transition(.asymmetric(insertion: .push(from: .top), removal: .push(from: .bottom)))
+                    
+                    SearchBar(searchText: $searchText)
+                        .transition(.asymmetric(insertion: .push(from: .top), removal: .push(from: .bottom)))
+                }
+                
+                
+                if !showSearchBar {
+                    NavigationButton(icon: showSearchBar ? "xmark.circle" : "magnifyingglass", label: nil)
+                        .animation(.none, value: showSearchBar)
+                        .transition(.asymmetric(insertion: .push(from: .trailing), removal: .push(from: .leading)))
+                        .onTapGesture {
+                            withAnimation(.spring) {
+                                showSearchBar = true
+                            }
+                        }
+                }
+                
+                if !showSearchBar {
                     NavigationButton(icon: "chevron.right", label: nil)
                         .rotationEffect(Angle(degrees: showPortfolio ? 180 : 0))
+                        .transition(.asymmetric(insertion: .push(from: .trailing), removal: .push(from: .leading)))
                         .onTapGesture {
                             withAnimation(.spring) {
                                 showPortfolio.toggle()
                             }
                         }
                 }
-                Text("Live")
-                    .font(.system(size: 36))
-                    .fontWeight(.regular)
             }
-            .padding()
-            .padding(.bottom, 0)
+            Text("Live")
+                .font(.system(size: 36))
+                .fontWeight(.regular)
+        }
+        .padding()
+        .padding(.bottom, 0)
     }
     
     private var allCoinsList: some View {
