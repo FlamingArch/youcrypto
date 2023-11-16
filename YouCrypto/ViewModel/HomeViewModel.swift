@@ -10,11 +10,13 @@ import Combine
 
 class HomeViewModel: ObservableObject {
     @Published var allCoins = [Coin]()
+    @Published var marketData: MarketData? = nil
     @Published var portfolioCoins = [Coin]()
     
     @Published var searchText: String = ""
     
-    private let dataService = CoinData()
+    private let coinHandler = CoinHandler()
+    private let marketDataHandler = MarketDataHandler()
     private var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -29,7 +31,7 @@ class HomeViewModel: ObservableObject {
     }
     
     func addSubscribers() {
-        // dataService.$allCoins
+        // coinHandler.$allCoins
         //     .sink { [weak self] returnedCoins in
         //         self?.allCoins = returnedCoins
         //     }
@@ -37,11 +39,17 @@ class HomeViewModel: ObservableObject {
         
         // Updates all coins
         $searchText
-            .combineLatest(dataService.$allCoins)
+            .combineLatest(coinHandler.$allCoins)
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main) // Wait 0.5 seconds for additional input before filtering
             .map(filterCoins)
             .sink { [weak self] returnedCoins in
                 self?.allCoins = returnedCoins
+            }
+            .store(in: &cancellables)
+        
+        marketDataHandler.$marketData
+            .sink { [weak self] returnedMarketData in
+                self?.marketData = returnedMarketData
             }
             .store(in: &cancellables)
     }

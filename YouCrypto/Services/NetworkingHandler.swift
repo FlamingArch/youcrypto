@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class Networking {
+class NetworkingHandler {
     enum NetworkingError: LocalizedError {
         case badURLResponse(url: URL)
         case unknown

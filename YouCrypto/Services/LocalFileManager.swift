@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-class LocalFileData {
-    static let instance = LocalFileData()
+class LocalFileManager {
+    static let instance = LocalFileManager()
     
     private init() {}
     

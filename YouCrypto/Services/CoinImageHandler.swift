@@ -8,12 +8,12 @@
 import SwiftUI
 import Combine
 
-class CoinImageData {
+class CoinImageHandler {
     @Published var image: UIImage? = nil
     
     private var imageSubscription: AnyCancellable?
     private let coin: Coin
-    private let fileManager = LocalFileData.instance
+    private let fileManager = LocalFileManager.instance
     private let folderName = "coin_images"
     private let imageName: String
     
@@ -37,11 +37,11 @@ class CoinImageData {
         print("Downloading Image now")
         guard let url = URL(string: coin.image) else { return }
         
-        imageSubscription = Networking.download(url: url)
+        imageSubscription = NetworkingHandler.download(url: url)
             .tryMap({ data -> UIImage? in
                 return UIImage(data: data)
             })
-            .sink(receiveCompletion: Networking.handleCompletion, receiveValue: { [weak self] (returnedImage) in
+            .sink(receiveCompletion: NetworkingHandler.handleCompletion, receiveValue: { [weak self] (returnedImage) in
                 guard 
                     let self = self,
                     let returnedImage = returnedImage
