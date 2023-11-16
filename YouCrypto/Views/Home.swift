@@ -9,26 +9,22 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var viewModel: HomeViewModel
-    @State private var showPortfolio = false
+    @State private var showPortfolio = false        // Page showing holdings, sliding in from trailing
     @State private var showSearchBar = false
+    @State private var showPortfolioView = false    // New sheet to add holdings
     
     var body: some View {
-        ZStack {
-            Color.theme.background.ignoresSafeArea()
-            VStack  {
-                homeHeader
-                
-                columnTitles
-                
-                if !showPortfolio {
-                    allCoinsList
-                } else {
-                    portfolioCoinsList
-                }
-                
-                Spacer()
+        VStack  {
+            homeHeader
+            columnTitles
+            if !showPortfolio {
+                allCoinsList
+            } else {
+                portfolioCoinsList
             }
+            Spacer()
         }
+        .sheet(isPresented: $showPortfolioView) { PortfolioView().environmentObject(viewModel) }
     }
 }
 
@@ -43,9 +39,14 @@ extension HomeView {
         VStack(alignment: .leading, spacing: 20) {
             HStack(spacing: 16) {
                 if !showSearchBar{
-                    NavigationButton(icon: showPortfolio ? "info" : "info", label: "Info")
-                        .animation(.none, value: false)
+                    NavigationButton(icon: showPortfolio ? "plus" : "info", label: showPortfolio ? "Add" : "Info")
+                        .animation(.none, value: showPortfolio)
                         .transition(.asymmetric(insertion: .push(from: .leading), removal: .push(from: .trailing)))
+                        .onTapGesture {
+                            if showPortfolio {
+                                showPortfolioView = true
+                            }
+                        }
                     
                     Spacer()
                 }
@@ -56,6 +57,7 @@ extension HomeView {
                         .onTapGesture {
                             withAnimation {
                                 showSearchBar = false
+                                viewModel.searchText = ""
                             }
                         }
                         .transition(.asymmetric(insertion: .push(from: .top), removal: .push(from: .bottom)))
@@ -65,7 +67,7 @@ extension HomeView {
                 }
                 
                 
-                if !showSearchBar {
+                if !showSearchBar && !showPortfolio {
                     NavigationButton(icon: showSearchBar ? "xmark.circle" : "magnifyingglass", label: nil)
                         .animation(.none, value: showSearchBar)
                         .transition(.asymmetric(insertion: .push(from: .trailing), removal: .push(from: .leading)))
@@ -87,11 +89,17 @@ extension HomeView {
                         }
                 }
             }
+            .padding(.horizontal)
+            
+            StatisticRow(showPortfolio: $showPortfolio)
+                .padding(.bottom)
+            
             Text("Live")
                 .font(.system(size: 36))
                 .fontWeight(.regular)
+                .padding(.horizontal)
+                .padding(.bottom, 8)
         }
-        .padding()
         .padding(.bottom, 0)
     }
     

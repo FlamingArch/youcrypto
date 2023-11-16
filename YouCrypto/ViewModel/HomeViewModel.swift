@@ -9,6 +9,14 @@ import Foundation
 import Combine
 
 class HomeViewModel: ObservableObject {
+    @Published var statistics: [Statistic] = [
+        Statistic(title: "Title", value: "Value", changePercentage: 1),
+        Statistic(title: "Title", value: "Value"),
+        Statistic(title: "Title", value: "Value", changePercentage: -4),
+        Statistic(title: "Title", value: "Value")
+    ]
+    
+    
     @Published var allCoins = [Coin]()
     @Published var marketData: MarketData? = nil
     @Published var portfolioCoins = [Coin]()
@@ -48,10 +56,27 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellables)
         
         marketDataHandler.$marketData
+            .map(mapGlobalMarketData)
             .sink { [weak self] returnedMarketData in
-                self?.marketData = returnedMarketData
+                self?.statistics = returnedMarketData
             }
             .store(in: &cancellables)
+    }
+    
+    private func mapGlobalMarketData(data receivedMarketData: MarketData?) -> [Statistic] {
+        var stats: [Statistic] = []
+        
+        guard let receivedMarketData = receivedMarketData else {
+            return stats
+        }
+        
+        stats.append(contentsOf: [
+            Statistic(title: "Market Cap", value: receivedMarketData.marketCap, changePercentage: receivedMarketData.marketCapChangePercentage24HUsd),
+            Statistic(title: "24H Volume", value: receivedMarketData.volume),
+            Statistic(title: "BTC Dominance", value: receivedMarketData.btcDominance),
+            Statistic(title: "Portfolio Value", value: "$0.00", changePercentage: 0),
+        ])
+        return stats
     }
     
     private func filterCoins(text: String, coins startingCoins: [Coin]) -> [Coin] {

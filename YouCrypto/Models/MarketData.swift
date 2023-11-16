@@ -11,6 +11,10 @@ import Foundation
  URL: https://api.coingecko.com/api/v3/global
  */
 
+struct GlobalData: Codable {
+    let data: MarketData?
+}
+
 struct MarketData: Codable {
     let activeCryptocurrencies, upcomingIcos, ongoingIcos, endedIcos: Int
     let markets: Int
@@ -33,14 +37,14 @@ struct MarketData: Codable {
     
     var marketCap: String {
         if let item = totalMarketCap.first(where: { $0.key == "inr" }) {
-            return "\(item.value)"
+            return "₹\(item.value.formattedWithAbbreviations())"
         }
         return ""
     }
     
     var volume: String {
         if let item = totalVolume.first(where: { $0.key == "inr" }) {
-            return "\(item.value)"
+            return "₹\(item.value.formattedWithAbbreviations())"
         }
         return ""
     }
