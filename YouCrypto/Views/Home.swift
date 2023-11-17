@@ -24,7 +24,7 @@ struct HomeView: View {
             }
             Spacer()
         }
-        .sheet(isPresented: $showPortfolioView) { PortfolioView().environmentObject(viewModel) }
+        .sheet(isPresented: $showPortfolioView) { AddHoldingsView().environmentObject(viewModel) }
     }
 }
 
@@ -105,7 +105,7 @@ extension HomeView {
     
     private var allCoinsList: some View {
         List {
-            ForEach(viewModel.allCoins) {
+            ForEach(viewModel.allCoinsOptionallyFiltered) {
                 CoinRow(coin: $0, showHoldingsColumn: false)
                     .listRowSeparator(.hidden)
                     .listRowInsets(.init(top: 16, leading: 8, bottom: 16, trailing: 16))

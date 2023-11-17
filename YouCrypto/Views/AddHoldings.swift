@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct PortfolioView: View {
+struct AddHoldingsView: View {
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var viewModel: HomeViewModel
     @State private var selectedCoin: Coin? = nil
     @State private var quantity = ""
@@ -55,11 +56,11 @@ struct PortfolioView: View {
     }
 }
 
-extension PortfolioView {
+extension AddHoldingsView {
     private var coinBadgeList: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 16) {
-                ForEach(viewModel.allCoins) { coin in
+                ForEach(viewModel.allCoinsOptionallyFiltered) { coin in
                     CoinBadgeView(coin: coin, selected: (selectedCoin?.symbol ?? "") == coin.symbol)
                         .onTapGesture {
                             withAnimation(.easeInOut(duration: 0.15)) {
@@ -90,6 +91,29 @@ extension PortfolioView {
                 Spacer()
                 Text("\(getCurrentValue().asCurrencyWith2Decimals())")
             }.padding()
+            
+            Button {
+                handleSave()
+            } label: {
+                HStack(spacing: 0) {
+                    Spacer()
+                    Image(systemName: "checkmark")
+                        .font(.headline)
+                        .frame(width: 50, height: 50)
+                    
+                    Text("Save")
+                    Spacer()
+                }
+                .padding(.trailing, 20)
+                .foregroundColor(.primary)
+                .background(
+                    RoundedRectangle(cornerRadius: 999)
+                        .foregroundColor(.theme.secondaryText.opacity(0.16))
+                )
+            }
+            .padding()
+            .opacity((selectedCoin == nil || quantity == "") ? 0.4 : 1.0)
+            .disabled(selectedCoin == nil || quantity == "")
         }
         .animation(.none, value: selectedCoin == nil)
     }
@@ -98,22 +122,18 @@ extension PortfolioView {
         HStack {
             CloseButton()
             Spacer()
-            
-            
-            HStack {
-                Image(systemName: "checkmark").foregroundStyle(Color.theme.accent)
-                Spacer()
-            }
-            
-            
-            if selectedCoin != nil && selectedCoin?.currentHoldings != Double(quantity)  {
-                NavigationButton(icon: "checkmark", label: "Save")
-            }
         }.padding(.horizontal)
     }
     
     private func handleSave() {
-        guard let coin = selectedCoin else { return }
+        print("Saving Coin")
+        
+        guard
+            let coin = selectedCoin,
+            let amount = Double(quantity)
+        else { return }
+        
+        viewModel.updatePortfolio(coin: coin, amount: amount)
         
         withAnimation {
             self.showCheckmark = true
@@ -127,6 +147,8 @@ extension PortfolioView {
                 showCheckmark = false
             }
         }
+        
+        dismiss()
     }
     
     
@@ -137,5 +159,5 @@ extension PortfolioView {
 }
 
 #Preview {
-    PortfolioView().environmentObject(DeveloperPreview.instance.homeViewModel)
+    AddHoldingsView().environmentObject(DeveloperPreview.instance.homeViewModel)
 }

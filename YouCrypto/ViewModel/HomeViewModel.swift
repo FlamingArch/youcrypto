@@ -17,14 +17,17 @@ class HomeViewModel: ObservableObject {
     ]
     
     
-    @Published var allCoins = [Coin]()
+    @Published var allCoinsOptionallyFiltered = [Coin]()
     @Published var marketData: MarketData? = nil
+    
     @Published var portfolioCoins = [Coin]()
     
     @Published var searchText: String = ""
     
     private let coinHandler = CoinHandler()
     private let marketDataHandler = MarketDataHandler()
+    private let portfolioDataHandler = PortfolioDataHandler()
+    
     private var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -33,25 +36,18 @@ class HomeViewModel: ObservableObject {
     
     func addSampleCoinAsynchronously(delay: Double = 2.0) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            self.allCoins.append(DeveloperPreview.instance.coin)
+            self.allCoinsOptionallyFiltered.append(DeveloperPreview.instance.coin)
             self.portfolioCoins.append(DeveloperPreview.instance.coin)
         }
     }
     
     func addSubscribers() {
-        // coinHandler.$allCoins
-        //     .sink { [weak self] returnedCoins in
-        //         self?.allCoins = returnedCoins
-        //     }
-        //     .store(in: &cancellables)
-        
-        // Updates all coins
         $searchText
             .combineLatest(coinHandler.$allCoins)
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main) // Wait 0.5 seconds for additional input before filtering
             .map(filterCoins)
             .sink { [weak self] returnedCoins in
-                self?.allCoins = returnedCoins
+                self?.allCoinsOptionallyFiltered = returnedCoins
             }
             .store(in: &cancellables)
         
@@ -61,6 +57,24 @@ class HomeViewModel: ObservableObject {
                 self?.statistics = returnedMarketData
             }
             .store(in: &cancellables)
+        
+        $allCoinsOptionallyFiltered
+            .combineLatest(portfolioDataHandler.$savedEntities)
+            .map { coins, portfolioEntities -> [Coin] in
+                coins
+                    .compactMap { coin -> Coin? in
+                        guard let entity = portfolioEntities.first(where: { $0.coinID == coin.id }) else { return nil }
+                        return coin.updateHoldings(amount: entity.currentHoldings)
+                    }
+            }
+            .sink { [weak self] returnedCoins in
+                self?.portfolioCoins = returnedCoins
+            }
+            .store(in: &cancellables)
+    }
+    
+    func updatePortfolio(coin: Coin, amount: Double) {
+        portfolioDataHandler.updatePortfolio(coin: coin, amount: amount)
     }
     
     private func mapGlobalMarketData(data receivedMarketData: MarketData?) -> [Statistic] {
