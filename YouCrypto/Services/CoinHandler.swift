@@ -19,7 +19,7 @@ class CoinHandler {
         getCoins()
     }
     
-    private func getCoins() {
+    func getCoins() {
         guard let url = URL(string: self.url) else { return }
         
         coinSubscription = NetworkingHandler.download(url: url)

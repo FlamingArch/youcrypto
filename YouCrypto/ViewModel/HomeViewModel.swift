@@ -22,6 +22,7 @@ class HomeViewModel: ObservableObject {
     
     @Published var portfolioCoins = [Coin]()
     
+    @Published var isLoading = false
     @Published var searchText: String = ""
     
     private let coinHandler = CoinHandler()
@@ -64,12 +65,20 @@ class HomeViewModel: ObservableObject {
             .map(mapGlobalMarketData)
             .sink { [weak self] returnedMarketData in
                 self?.statistics = returnedMarketData
+                self?.isLoading = false
             }
             .store(in: &cancellables)
     }
     
     func updatePortfolio(coin: Coin, amount: Double) {
         portfolioDataHandler.updatePortfolio(coin: coin, amount: amount)
+    }
+    
+    func reloadData() {
+        isLoading = true
+        coinHandler.getCoins()
+        marketDataHandler.getMarketData()
+        HapticsHandler.notification(type: .success)
     }
 }
 
@@ -111,7 +120,7 @@ extension HomeViewModel {
 }
 
 // MARK: Utilities
-extension HomeViewModel {    
+extension HomeViewModel {
     private func filterCoins(text: String, coins startingCoins: [Coin]) -> [Coin] {
         guard !text.isEmpty else {
             return startingCoins

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E42070512B08A35100C3324E /* HapticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42070502B08A35100C3324E /* HapticsHandler.swift */; };
 		E45C82F02AF26BF4007F2B24 /* CoinRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C82EF2AF26BF4007F2B24 /* CoinRow.swift */; };
 		E45C82F22AF26CA3007F2B24 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C82F12AF26CA3007F2B24 /* PreviewProvider.swift */; };
 		E45C82F42AF26FD4007F2B24 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C82F32AF26FD4007F2B24 /* Double.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E42070502B08A35100C3324E /* HapticsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsHandler.swift; sourceTree = "<group>"; };
 		E45C82EF2AF26BF4007F2B24 /* CoinRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRow.swift; sourceTree = "<group>"; };
 		E45C82F12AF26CA3007F2B24 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		E45C82F32AF26FD4007F2B24 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				E480D3342B060D5E0093A61B /* LocalFileManager.swift */,
 				E480D33C2B0635CD0093A61B /* MarketDataHandler.swift */,
 				E46839B92B072AA500BC91A8 /* PortfolioDataHandler.swift */,
+				E42070502B08A35100C3324E /* HapticsHandler.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				E45C82F72AF28F51007F2B24 /* HomeViewModel.swift in Sources */,
 				E45C82FB2AF29D5E007F2B24 /* CoinHandler.swift in Sources */,
 				E45C83032AF2D249007F2B24 /* CoinImageViewModel.swift in Sources */,
+				E42070512B08A35100C3324E /* HapticsHandler.swift in Sources */,
 				E4BABCA72AF24B7300809058 /* Home.swift in Sources */,
 				E480D3472B0696920093A61B /* CloseButton.swift in Sources */,
 				E480D3372B0618C20093A61B /* SearchBar.swift in Sources */,
