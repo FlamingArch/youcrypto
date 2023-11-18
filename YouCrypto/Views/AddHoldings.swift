@@ -24,15 +24,7 @@ struct AddHoldingsView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading) {
-                    
-                    HStack {
-                        CloseButton()
-                        Spacer()
-                        if selectedCoin != nil && selectedCoin?.currentHoldings != Double(quantity)  {
-                            NavigationButton(icon: "checkmark", label: "Save")
-                        }
-                    }.padding(.horizontal)
-                    
+                    appBar
                     
                     Text("Add Holdings")
                         .font(.title)
